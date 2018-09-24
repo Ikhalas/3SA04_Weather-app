@@ -7,8 +7,8 @@ export default class Weather extends React.Component {
  }
  render() {
  return (
- <View style={styles.container}>
- <Text onPress={this.doIt}>Hello World</Text>
+ <View style={styles.container}> 
+ <Text>{this.props.zipCode}</Text> 
  </View>
  );
  }
