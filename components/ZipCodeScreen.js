@@ -19,8 +19,6 @@ const ZipItem = ({place, code, navigate}) => (
     </TouchableHighlight>
    )
 
-
-
 const _keyExtractor = item => item.code
 
 
@@ -30,8 +28,7 @@ export default class ZipCodeScreen extends React.Component {
             headerTitle: (<Text>Choose a zip code</Text>),
         }
     }
-
-    
+  
     render() {
         const { navigate } = this.props.navigation;
         return (
