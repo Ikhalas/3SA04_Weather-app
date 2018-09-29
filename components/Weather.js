@@ -7,16 +7,38 @@ export default class Weather extends React.Component {
         super(props);
         this.state = {
             forcast: {
-                main: 'MAIN', description: 'description', temp: 0
+                main: 'main', description: 'description', temp: 0
              }
          }
     }
+
+    fetchData = () => {
+        fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.props.zipCode},th&units=metric&APPID=fd68c0f2039c5a25f666a9ff374bc93e`)
+         .then((response) => response.json())
+         .then((json) => {
+           this.setState(
+            {
+               forcast: {
+                 main: json.weather[0].main,
+                 description: json.weather[0].description,
+                 temp: json.main.temp
+               }
+            });
+        })
+         .catch((error) => {
+            console.warn(error);
+         });
+        }
+        componentDidMount = () => this.fetchData()
+
     render() {
         return (
             <View style={styles.container}>
                 <ImageBackground source={require('../bg.jpg')} style={styles.backdrop}>
-                <View style={styles.text} ><Text style={styles.font}>Zip code is {this.props.zipCode}.</Text></View>
-                <Forcast {...this.state.forcast} />
+                    <View style={styles.back}>
+                        <Text style={styles.zip}>Zip code is {this.props.zipCode}.</Text>
+                        <Forcast {...this.state.forcast} />
+                    </View>
                 </ImageBackground>
             </View>
         );
@@ -27,17 +49,18 @@ const styles = StyleSheet.create({
     container: { paddingTop: 25, },
     backdrop: { width: '100%', height: '100%'},
 
-    text: { 
-        paddingTop : 20,
-        flexDirection : 'column',
-        justifyContent : 'space-between',
-        alignItems: 'center'
+    zip: { 
+        color :  '#fff',
+        paddingTop : 30,
     },
 
-    font:{
-        fontSize : 30,
-        color :  '#000',
-    }   
+    back:{
+        flexDirection: 'column', 
+        justifyContent:'center',
+        alignItems: 'center',
+        backgroundColor: 'black',
+        opacity:0.5,
+       },
 });
 
    

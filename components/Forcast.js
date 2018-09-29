@@ -1,14 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default class Forecast extends React.Component {
     render() {
     return (
         <View style={styles.container}>
             
-                <Text style={styles.font}>{this.props.main}</Text>
-                <Text style={styles.font}>{this.props.description}</Text>
-                <Text style={styles.font}>{this.props.temp} °C</Text>
+                <Text style={styles.main}>{this.props.main}</Text>
+                <Text style={styles.description}>{this.props.description}</Text>
+                <Text style={styles.temp}>{this.props.temp} °C</Text>
             
         </View>
         );
@@ -24,11 +24,26 @@ const styles = StyleSheet.create({
 
     backdrop: { width: '100%', height: '100%'},
 
-    font:{
-        fontSize : 50,
-        color :  '#fff',
-
+    main:{
+        paddingTop : 30,
+        fontSize : 40,
+        color :  '#fff'
     },
+
+    description:{
+        paddingTop : 50,
+        fontSize : 20,
+        color :  '#fff'
+    },
+
+    temp:{
+        paddingTop : 50,
+        paddingBottom:20,
+        fontSize : 40,
+        color :  '#fff'
+    }
+
+
 });
 
    
