@@ -45,8 +45,8 @@ export default class Weather extends React.Component {
                         <View style={styles.back}>
                             <Text style={styles.zip}>Zip code is {this.props.zipCode}.</Text>
                             <Forcast {...this.state.forcast} />
-                    </View>        
-                        </View>
+                        </View>        
+                    </View>
                 </ImageBackground>
             </View>
         );

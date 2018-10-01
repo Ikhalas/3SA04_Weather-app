@@ -1,4 +1,4 @@
-import { StyleSheet, FlatList, View, Text,TouchableHighlight } from 'react-native';
+import { StyleSheet, FlatList, View, Text,TouchableHighlight,ImageBackground } from 'react-native';
 import React from 'react';
     
 
@@ -33,23 +33,38 @@ export default class ZipCodeScreen extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <View>
-                <FlatList data={availableZipItems} keyExtractor={_keyExtractor} 
-                renderItem={({item}) => <ZipItem {...item} navigate={navigate}/>}/>
+                <ImageBackground source={require('../bg.jpg')} style={styles.backdrop}>
+                    <View style={styles.back}>
+                        <View style={styles.pad}>
+                            <FlatList data={availableZipItems} keyExtractor={_keyExtractor} 
+                            renderItem={({item}) => <ZipItem {...item} navigate={navigate}/>}/>
+                        </View>
+                    </View>    
+                </ImageBackground>
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
+    backdrop: { width: '100%', height: '100%'},
+
+    pad: { 
+        paddingTop: 110
+    },
+
     zipItem: {
-        paddingTop: 40,
+        paddingTop: 20,
+        paddingBottom: 20,
         flexDirection: 'row',
         justifyContent:'space-between', 
+        backgroundColor: 'black',
+        opacity:0.5,
 
     },
     zipPlace: {
         textAlign:'left', 
-        color:'black', 
+        color:'white', 
         fontSize: 30 ,
         paddingLeft: 30,  
     },
